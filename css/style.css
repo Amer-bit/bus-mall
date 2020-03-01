@@ -1,0 +1,31 @@
+body{
+    margin: 0px;
+    background-color: rgb(233, 224, 224) ;
+}
+header{
+    width: 100%;
+    height: 120px;
+}
+main{
+height: 900px;;
+
+}
+footer{
+    width: 100%;
+    height: 120px;
+}
+.results{
+    display: inline-block;
+    margin: 0;
+    height: 900px;
+    width: 300px;
+}
+#productimg{
+    margin: 0;
+    height: 400px;
+    width: 1100px;
+    float: right;
+}
+.randomtext{
+    display: inline-block;
+}
