@@ -45,20 +45,21 @@ console.log(Bus_mall.imgArray);
 
 function randomized (){
     var leftRandom , centerRandom , rightRandom;
-    leftRandom = Bus_mall.imgArray[getRandomNumber(0 , imgGallary.length)];
+    leftRandom = Bus_mall.imgArray[getRandomNumber(0 , imgGallary.length-1)];
     console.log(leftRandom);
     console.log(imgGallary.length);
     
-    centerRandom =Bus_mall.imgArray[getRandomNumber(0 , imgGallary.length)];
+    centerRandom =Bus_mall.imgArray[getRandomNumber(0 , imgGallary.length-1)];
     console.log(centerRandom);
     
-    rightRandom = Bus_mall.imgArray[getRandomNumber(0 , imgGallary.length)];
+    rightRandom = Bus_mall.imgArray[getRandomNumber(0 , imgGallary.length-1)];
     console.log(rightRandom);
 
     leftimage.setAttribute('src',leftRandom.imgPath)
     
     centerimage.setAttribute('src',centerRandom.imgPath)
 
+    rightimage.setAttribute('src' , rightRandom.imgPath)
     
 }
 
