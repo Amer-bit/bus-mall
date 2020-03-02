@@ -85,12 +85,13 @@ randomized();
 
 //Render new images while counting the views and clicks
 
+var votingRound = 25
 
 product.addEventListener('click',newimages)
 var totalClicks = 0;
 
 function newimages(event){
-    if (totalClicks < 25){
+    if (totalClicks < votingRound){
         if (event.target.id !== 'productimg'){
 
             if (event.target.id === 'leftimage'){
