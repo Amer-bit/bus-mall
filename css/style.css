@@ -14,7 +14,7 @@ footer{
     width: 100%;
     height: 120px;
 }
-.results{
+#results{
     display: inline-block;
     margin: 0;
     height: 900px;
@@ -28,4 +28,19 @@ footer{
 }
 .randomtext{
     display: inline-block;
+}
+#leftimage{
+    height: 350px;
+    width: 350px;
+}
+
+
+#centerimage{
+    height: 350px;
+    width: 350px;
+    margin: 0px 20px;
+}
+#rightimage{
+    height: 350px;
+    width: 350px;
 }
