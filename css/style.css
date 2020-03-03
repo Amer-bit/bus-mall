@@ -7,13 +7,12 @@ header{
     height: 140px;
 }
 .logo{
-    display: inline;
+    display: inline-block;
     
 }
 .title{
     text-align: center;
-    padding-bottom: 100px;
-    
+    padding-bottom: 100px;    
 }
 h2{
     text-align: center;
