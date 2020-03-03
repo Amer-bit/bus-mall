@@ -2,11 +2,16 @@
 
 
 var imgGallary = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg',
-    'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'pen.jpg', 'dragon.jpg', 'pet-sweep.jpg',
-    'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg',
-    'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
-Bus_mall.imgArray = []
-var chartData = []
+'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'pen.jpg', 'dragon.jpg', 'pet-sweep.jpg',
+'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg',
+'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
+
+//array to store all product images instance
+Bus_mall.imgArray = [];
+
+var chartData = [];
+var chartLabel = [];
+var arrayToPreventRepeatingImgaes =[];
 
 function Bus_mall(productName) {
 
@@ -42,7 +47,7 @@ var rightProduct = document.querySelector('#rightimage');
 
 for (var i = 0; i < imgGallary.length; i++) {
 
-    new Bus_mall(imgGallary[i])
+    new Bus_mall(imgGallary[i]);
 }
 
 //console.log(Bus_mall.imgArray);
@@ -70,14 +75,17 @@ function randomized() {
     centerimage.setAttribute('src', centerRandom.imgPath);   // or this one
     rightimage.setAttribute('src', rightRandom.imgPath);
 
+    ///////////////this loop prevent repeating images and repeating itertions\\\\\\\\\\\\\\\\\\\\\\\\
 
-    while ((leftRandom === centerRandom) || (leftRandom === rightRandom) || (rightRandom === centerRandom)) {
-        // console.log(leftRandom,rightRandom,centerRandom);
+    while ((leftRandom === centerRandom) || (leftRandom === rightRandom) || (rightRandom === centerRandom) || (arrayToPreventRepeatingImgaes.includes(leftRandom.name))
+    || (arrayToPreventRepeatingImgaes.includes(rightRandom.name) ) || (arrayToPreventRepeatingImgaes.includes(centerRandom.name))) {
+         console.log(leftRandom,rightRandom,centerRandom,arrayToPreventRepeatingImgaes.includes(rightRandom.name)); 
+         /////////////OR WE CAN USE .include()////////////////       
 
         randomized();
-
+        
     }
-
+    
 }
 randomized();
 
@@ -93,9 +101,12 @@ product.addEventListener('click', newimages)
 var totalClicks = 0;
 
 function newimages(event) {
+    arrayToPreventRepeatingImgaes = ['randok',leftRandom.name,centerRandom.name,rightRandom.name]; 
+    console.log(arrayToPreventRepeatingImgaes);
+    
     if (totalClicks < votingRound) {
         if (event.target.id !== 'productimg') {
-
+            
             if (event.target.id === 'leftimage') {
                 leftRandom.clicks++;
             }
@@ -126,7 +137,6 @@ function newimages(event) {
     }
 }
 
-var chartLabel = [];
 
 function results() {
     
@@ -150,11 +160,6 @@ function results() {
         
     }
     
-   
-
-
-
-
 
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
@@ -195,10 +200,13 @@ var myChart = new Chart(ctx, {
 });
 
 
-
-
-
 }
+
+
+
+
+
+
 
 
 
