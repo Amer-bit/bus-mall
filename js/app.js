@@ -1,11 +1,12 @@
 'use strict'
 
 
-var imgGallary = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg','breakfast.jpg', 'bubblegum.jpg',
- 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'pen.jpg', 'dragon.jpg', 'pet-sweep.jpg',
- 'scissors.jpg', 'shark.jpg','sweep.png', 'tauntaun.jpg', 'unicorn.jpg',
-  'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
-   Bus_mall.imgArray = []
+var imgGallary = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg',
+    'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'pen.jpg', 'dragon.jpg', 'pet-sweep.jpg',
+    'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg',
+    'usb.gif', 'water-can.jpg', 'wine-glass.jpg'];
+Bus_mall.imgArray = []
+var chartData = []
 
 function Bus_mall(productName) {
 
@@ -14,6 +15,7 @@ function Bus_mall(productName) {
     this.clicks = 0;
     this.views = 0;
     Bus_mall.imgArray.push(this);
+
 }
 
 
@@ -35,12 +37,12 @@ var rightProduct = document.querySelector('#rightimage');
 // leftimage.title = imgGallary[0];
 
 
-//////////////Creating my objects using imgGallary array\\\\\\\\\
+//////////////Creating my objects using imgGallary array\\\\\\\\\\\\\\\\\
 
 
-for (var i = 0; i < imgGallary.length ; i++){
+for (var i = 0; i < imgGallary.length; i++) {
 
-     new Bus_mall(imgGallary[i])    
+    new Bus_mall(imgGallary[i])
 }
 
 //console.log(Bus_mall.imgArray);
@@ -48,34 +50,34 @@ for (var i = 0; i < imgGallary.length ; i++){
 
 
 
-///////////create randomized images and render them
+/////////////////create randomized images and render them\\\\\\\\\\\\\\\\\\\\\\
 
-var leftRandom , centerRandom , rightRandom;
+var leftRandom, centerRandom, rightRandom;
 
 
-function randomized (){
-    leftRandom = Bus_mall.imgArray[getRandomNumber(0 , imgGallary.length-1)];
+function randomized() {
+    leftRandom = Bus_mall.imgArray[getRandomNumber(0, imgGallary.length - 1)];
     // console.log(leftRandom);
     // console.log(imgGallary.length);
-    
-    centerRandom =Bus_mall.imgArray[getRandomNumber(0 , imgGallary.length-1)];
-   // console.log(centerRandom);
-    
-    rightRandom = Bus_mall.imgArray[getRandomNumber(0 , imgGallary.length-1)];
+
+    centerRandom = Bus_mall.imgArray[getRandomNumber(0, imgGallary.length - 1)];
+    // console.log(centerRandom);
+
+    rightRandom = Bus_mall.imgArray[getRandomNumber(0, imgGallary.length - 1)];
     //console.log(rightRandom);
 
-    leftProduct.src=leftRandom.imgPath;    ///this method
-    centerimage.setAttribute('src',centerRandom.imgPath);   // or this one
-    rightimage.setAttribute('src' , rightRandom.imgPath);
+    leftProduct.src = leftRandom.imgPath;    ///this method
+    centerimage.setAttribute('src', centerRandom.imgPath);   // or this one
+    rightimage.setAttribute('src', rightRandom.imgPath);
 
 
-    while ((leftRandom === centerRandom) || (leftRandom === rightRandom) || (rightRandom === centerRandom)){
-       // console.log(leftRandom,rightRandom,centerRandom);
-        
+    while ((leftRandom === centerRandom) || (leftRandom === rightRandom) || (rightRandom === centerRandom)) {
+        // console.log(leftRandom,rightRandom,centerRandom);
+
         randomized();
-    
-        }
-        
+
+    }
+
 }
 randomized();
 
@@ -87,27 +89,27 @@ randomized();
 
 var votingRound = 25
 
-product.addEventListener('click',newimages)
+product.addEventListener('click', newimages)
 var totalClicks = 0;
 
-function newimages(event){
-    if (totalClicks < votingRound){
-        if (event.target.id !== 'productimg'){
+function newimages(event) {
+    if (totalClicks < votingRound) {
+        if (event.target.id !== 'productimg') {
 
-            if (event.target.id === 'leftimage'){
+            if (event.target.id === 'leftimage') {
                 leftRandom.clicks++;
             }
-            
-            else if (event.target.id === 'centerimage'){
-                centerRandom.click++;
+
+            else if (event.target.id === 'centerimage') {
+                centerRandom.clicks++;
             }
-            
-            else if  (event.target.id === 'rightimage'){
+
+            else if (event.target.id === 'rightimage') {
                 rightRandom.clicks++;
                 console.log(rightRandom.clicks++);
-                
+
             }
-            
+
             leftRandom.views++;
             centerRandom.views++;
             rightRandom.views++;
@@ -115,38 +117,88 @@ function newimages(event){
             randomized();
 
         }
-    
+
     } else {
         //console.log(Bus_mall.imgArray.length);
         console.log('more than 5 clicks');
-        product.removeEventListener('click' , newimages);
+        product.removeEventListener('click', newimages);
         results();
     }
 }
 
+var chartLabel = [];
 
-
-
-function results(){
-
-     var ul1 = document.getElementById('resultsareshownhere')
+function results() {
     
-    for(var list = 0; list < Bus_mall.imgArray.length; list++){
-      //  console.log(list);
+    var ul1 = document.getElementById('resultsareshownhere')
+    
+    
+    for (var list = 0; list < Bus_mall.imgArray.length; list++) {
+        //console.log(list);
+        
         
         var li = document.createElement('li');
+        
         ul1.appendChild(li);
-        li.textContent = `The ${Bus_mall.imgArray[list].name.split('.',1)} image has ${Bus_mall.imgArray[list].clicks} Clicks and it has ${Bus_mall.imgArray[list].views} views `
+
+        li.textContent = `The ${Bus_mall.imgArray[list].name.split('.', 1)} image has ${Bus_mall.imgArray[list].clicks} Clicks and it has ${Bus_mall.imgArray[list].views} views `
        // console.log(li);
+
+        chartLabel.push(Bus_mall.imgArray[list].name.split('.')[0]);
+        chartData.push(Bus_mall.imgArray[list].clicks)
+        
         
     }
+    
+   
+
+
+
+
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: chartLabel,
+        datasets: [{
+            label: '# of Votes',
+            data: chartData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+
+
+
+
 }
-
-
-
-
-
-
 
 
 
