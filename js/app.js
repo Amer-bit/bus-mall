@@ -74,7 +74,7 @@ function Bus_mall(productName) {
         // console.log(centerRandom);
         
         rightRandom = Bus_mall.imgArray[getRandomNumber(0, imgGallary.length - 1)];
-        //console.log(rightRandom);
+        // console.log(rightRandom);
         
         leftProduct.src = leftRandom.imgPath;    ///this method
         centerimage.setAttribute('src', centerRandom.imgPath);   // or this one
@@ -84,7 +84,7 @@ function Bus_mall(productName) {
         
         while ((leftRandom === centerRandom) || (leftRandom === rightRandom) || (rightRandom === centerRandom) || (arrayToPreventRepeatingImgaes.includes(leftRandom.name))
         || (arrayToPreventRepeatingImgaes.includes(rightRandom.name)) || (arrayToPreventRepeatingImgaes.includes(centerRandom.name))) {
-            console.log(leftRandom, rightRandom, centerRandom, arrayToPreventRepeatingImgaes.includes(rightRandom.name));
+            //console.log(leftRandom, rightRandom, centerRandom, arrayToPreventRepeatingImgaes.includes(rightRandom.name));
             /////////////OR WE CAN USE .include()////////////////       
             
             randomized();
@@ -105,6 +105,7 @@ var totalClicks = 0;
 
 function newimages(event) {
     arrayToPreventRepeatingImgaes = [leftRandom.name, centerRandom.name, rightRandom.name];
+     event.preventDefault();
     console.log(arrayToPreventRepeatingImgaes);
 
     if (totalClicks < votingRound) {
@@ -112,6 +113,8 @@ function newimages(event) {
 
             if (event.target.id === 'leftimage') {
                 leftRandom.clicks++;
+                
+                
             }
 
             else if (event.target.id === 'centerimage') {
@@ -120,7 +123,7 @@ function newimages(event) {
 
             else if (event.target.id === 'rightimage') {
                 rightRandom.clicks++;
-                console.log(rightRandom.clicks++);
+                
 
             }
 
@@ -145,6 +148,7 @@ function newimages(event) {
 }
 
 
+//result function to render the results of the voting
 
 function results() {
     var ul1 = document.getElementById('resultsareshownhere')
@@ -168,7 +172,7 @@ function results() {
     }
 
 
-    
+    //Chart.js library to draw the voting result
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -232,28 +236,31 @@ function results() {
 
 }
 
+////////////////Creating local storage\\\\\\\\\\\\\\\\\\\\\\
+
 function storeData() {
     var imgArrayStringed = JSON.stringify(Bus_mall.imgArray)
-    console.log(imgArrayStringed);
+    //console.log(imgArrayStringed);
 
     localStorage.setItem('clicks data', imgArrayStringed)
 }
 
 
-
+//////////////invoking the stored data and stored them in Bus_mall.imgArray\\\\\\\\\\\\\\\\\\\\\\
 
 function getStoredData() {
     var imgArrayObjectified = localStorage.getItem('clicks data')
+console.log(imgArrayObjectified);
 
-    if(false){
+    if(imgArrayObjectified){
     Bus_mall.imgArray = JSON.parse(imgArrayObjectified);
        console.log(Bus_mall.imgArray);
     }
-        
-    }
+    
+}
 
+getStoredData();
    
-    getStoredData();
 
 
 

@@ -10,3 +10,6 @@ then created a function to pick random three objects to display them on the user
 2-3-2020
 
 added little CSS style
+
+7-3-2020
+this program generate three random products stored in array of object and let the user pick one of the three then display the result of all the votes which stored in local storage as a chart 
